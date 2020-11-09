@@ -1,0 +1,3498 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Mugole - niemiecki-slowka</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        /* General */
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+    font-weight: 700;
+}
+
+body {
+    font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 17px;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+img {
+    object-fit: contain;
+}
+
+.markdown {
+    max-width: 100%;
+    white-space: pre-wrap;
+    line-height: 1.3;
+    overflow-wrap: break-word;
+}
+
+.spoiler {
+    width: fit-content;
+}
+
+.spoiler--hidden {
+    cursor: pointer;
+}
+
+.spoiler-text {
+    border-radius: 3px;
+}
+
+.spoiler--hidden .spoiler-text {
+    color: rgba(0, 0, 0, 0);
+}
+
+.spoiler--hidden .spoiler-text::selection {
+    color: rgba(0, 0, 0, 0);
+}
+
+.spoiler-image {
+    position: relative;
+    overflow: hidden;
+    border-radius: 3px;
+}
+
+.spoiler--hidden .spoiler-image {
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.spoiler--hidden .spoiler-image img {
+    filter: blur(44px);
+}
+
+.spoiler--hidden .spoiler-image:after {
+    content: "SPOILER";
+    color: #dcddde;
+    background-color: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 600;
+    padding: 0.5em 0.7em;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+    font-size: 0.9em;
+}
+
+.spoiler--hidden:hover .spoiler-image:after {
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.quote {
+    margin: 0.1em 0;
+    padding-left: 0.6em;
+    border-left: 4px solid;
+    border-radius: 3px;
+}
+
+.pre {
+    font-family: "Consolas", "Courier New", Courier, monospace;
+}
+
+.pre--multiline {
+    margin-top: 0.25em;
+    padding: 0.5em;
+    border: 2px solid;
+    border-radius: 5px;
+}
+
+.pre--inline {
+    padding: 2px;
+    border-radius: 3px;
+    font-size: 0.85em;
+}
+
+.mention {
+    border-radius: 3px;
+    padding: 0 2px;
+    color: #7289da;
+    background: rgba(114, 137, 218, .1);
+    font-weight: 500;
+}
+
+.emoji {
+    width: 1.25em;
+    height: 1.25em;
+    margin: 0 0.06em;
+    vertical-align: -0.4em;
+}
+
+.emoji--small {
+    width: 1em;
+    height: 1em;
+}
+
+.emoji--large {
+    width: 2.8em;
+    height: 2.8em;
+}
+
+/* Preamble */
+
+.preamble {
+    display: grid;
+    margin: 0 0.3em 0.6em 0.3em;
+    max-width: 100%;
+    grid-template-columns: auto 1fr;
+}
+
+.preamble__guild-icon-container {
+    grid-column: 1;
+}
+
+.preamble__guild-icon {
+    max-width: 88px;
+    max-height: 88px;
+}
+
+.preamble__entries-container {
+    grid-column: 2;
+    margin-left: 0.6em;
+}
+
+.preamble__entry {
+    font-size: 1.4em;
+}
+
+.preamble__entry--small {
+    font-size: 1em;
+}
+
+/* Chatlog */
+
+.chatlog {
+    max-width: 100%;
+}
+
+.chatlog__message-group {
+    display: grid;
+    margin: 0 0.6em;
+    padding: 0.9em 0;
+    border-top: 1px solid;
+    grid-template-columns: auto 1fr;
+}
+
+.chatlog__author-avatar-container {
+    grid-column: 1;
+    width: 40px;
+    height: 40px;
+}
+
+.chatlog__author-avatar {
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+}
+
+.chatlog__messages {
+    grid-column: 2;
+    margin-left: 1.2em;
+    min-width: 50%;
+}
+
+.chatlog__author-name {
+    font-weight: 500;
+}
+
+.chatlog__timestamp {
+    margin-left: 0.3em;
+    font-size: 0.75em;
+}
+
+.chatlog__message {
+    padding: 0.1em 0.3em;
+    margin: 0 -0.3em;
+    background-color: transparent;
+    transition: background-color 1s ease;
+}
+
+.chatlog__content {
+    font-size: 0.95em;
+    word-wrap: break-word;
+}
+
+.chatlog__edited-timestamp {
+    margin-left: 0.15em;
+    font-size: 0.8em;
+}
+
+.chatlog__attachment {
+    margin-top: 0.3em;
+}
+
+.chatlog__attachment-thumbnail {
+    vertical-align: top;
+    max-width: 45vw;
+    max-height: 500px;
+    border-radius: 3px;
+}
+
+.chatlog__embed {
+    display: flex;
+    margin-top: 0.3em;
+    max-width: 520px;
+}
+
+.chatlog__embed-color-pill {
+    flex-shrink: 0;
+    width: 0.25em;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.chatlog__embed-content-container {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5em 0.6em;
+    border: 1px solid;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.chatlog__embed-content {
+    display: flex;
+    width: 100%;
+}
+
+.chatlog__embed-text {
+    flex: 1;
+}
+
+.chatlog__embed-author {
+    display: flex;
+    margin-bottom: 0.3em;
+    align-items: center;
+}
+
+.chatlog__embed-author-icon {
+    margin-right: 0.5em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.chatlog__embed-author-name {
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-title {
+    margin-bottom: 0.2em;
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-description {
+    font-weight: 500;
+    font-size: 0.85em;
+}
+
+.chatlog__embed-fields {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.chatlog__embed-field {
+    flex: 0;
+    min-width: 100%;
+    max-width: 506px;
+    padding-top: 0.6em;
+    font-size: 0.875em;
+}
+
+.chatlog__embed-field--inline {
+    flex: 1;
+    flex-basis: auto;
+    min-width: 150px;
+}
+
+.chatlog__embed-field-name {
+    margin-bottom: 0.2em;
+    font-weight: 600;
+}
+
+.chatlog__embed-field-value {
+    font-weight: 500;
+}
+
+.chatlog__embed-thumbnail {
+    flex: 0;
+    margin-left: 1.2em;
+    max-width: 80px;
+    max-height: 80px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-image-container {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-image {
+    max-width: 500px;
+    max-height: 400px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-footer {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-footer-icon {
+    margin-right: 0.2em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+.chatlog__embed-footer-text {
+    font-size: 0.75em;
+    font-weight: 500;
+}
+
+.chatlog__reactions {
+    display: flex;
+}
+
+.chatlog__reaction {
+    display: flex;
+    align-items: center;
+    margin: 0.35em 0.1em 0.1em 0.1em;
+    padding: 0.2em 0.35em;
+    border-radius: 3px;
+}
+
+.chatlog__reaction-count {
+    min-width: 9px;
+    margin-left: 0.35em;
+    font-size: 0.875em;
+}
+
+.chatlog__bot-tag {
+    position: relative;
+    top: -.2em;
+    margin-left: 0.3em;
+    padding: 0.05em 0.3em;
+    border-radius: 3px;
+    vertical-align: middle;
+    line-height: 1.3;
+    background: #7289da;
+    color: #ffffff;
+    font-size: 0.625em;
+    font-weight: 500;
+}
+
+/* Postamble */
+
+.postamble {
+    margin: 1.4em 0.3em 0.6em 0.3em;
+    padding: 1em;
+    border-top: 1px solid;
+}
+    </style>
+    <style>
+        /* General */
+
+body {
+    background-color: #36393e;
+    color: #dcddde;
+}
+
+a {
+    color: #0096cf;
+}
+
+.spoiler-text {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.spoiler--hidden .spoiler-text {
+    background-color: #202225;
+}
+
+.spoiler--hidden:hover .spoiler-text {
+    background-color: rgba(32, 34, 37, 0.8);
+}
+
+.quote {
+    border-color: #4f545c;
+}
+
+.pre {
+    background-color: #2f3136 !important;
+}
+
+.pre--multiline {
+    border-color: #282b30 !important;
+    color: #b9bbbe !important;
+}
+
+/* === Preamble === */
+
+.preamble__entry {
+    color: #ffffff;
+}
+
+/* Chatlog */
+
+.chatlog__message-group {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.chatlog__author-name {
+    color: #ffffff;
+}
+
+.chatlog__timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__message--highlighted {
+    background-color: rgba(114, 137, 218, 0.2) !important;
+}
+
+.chatlog__message--pinned {
+    background-color: rgba(249, 168, 37, 0.05);
+}
+
+.chatlog__edited-timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__embed-color-pill--default {
+    background-color: rgba(79, 84, 92, 1);
+}
+
+.chatlog__embed-content-container {
+    background-color: rgba(46, 48, 54, 0.3);
+    border-color: rgba(46, 48, 54, 0.6);
+}
+
+.chatlog__embed-author-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-author-name-link {
+    color: #ffffff;
+}
+
+.chatlog__embed-title {
+    color: #ffffff;
+}
+
+.chatlog__embed-description {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__embed-field-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-field-value {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__embed-footer {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__reaction {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.chatlog__reaction-count {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+/* Postamble */
+
+.postamble {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.postamble__entry {
+    color: #ffffff;
+}
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler--hidden');
+            }
+        }
+    </script>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="https://cdn.discordapp.com/embed/avatars/0.png" alt="Guild icon">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Mugole</div>
+        <div class="preamble__entry">niemiecki / niemiecki-slowka</div>
+
+
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">30-Apr-20 09:59 AM</span>
+
+            <div class="chatlog__message " data-message-id="705327431182975046" id="message-705327431182975046">
+                <div class="chatlog__content">
+                    <div class="markdown">------------------
+&quot;war&quot; sprytne nawet slowo wojna z innego germanskiego jezyka, to u nich jest odmianą &quot;być&quot;  ...
+--------- <span class="chatlog__edited-timestamp" title="05-Nov-20 12:55 AM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="705327465840640011" id="message-705327465840640011">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;duschen&quot; - niemcy sie dusza pod prysznicem - wziąć prysznic
+---------
+&quot;man&quot; - Niemcy jako tworcy obozow maja pogarde dla ludzkiego zycia
+dlatego angielskie &quot;man&quot; oznacza u nich zaimek bezosobowy
+---------
+niemieckie &quot;Nie&quot; - niemcy gdy mowia NIE to NIGDY tego nie odwołują - &quot;nigdy&quot;
+--------- <span class="chatlog__edited-timestamp" title="07-Sep-20 01:30 AM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="705327503006498817" id="message-705327503006498817">
+                <div class="chatlog__content">
+                    <div class="markdown">nawet dar u niemcow to trucizna - der Gift -  trucizna
+--------- <span class="chatlog__edited-timestamp" title="30-Apr-20 01:56 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="705327528436432976" id="message-705327528436432976">
+                <div class="chatlog__content">
+                    <div class="markdown">dla niemc&#243;w piekło jest jasnośnością --------------  hell = przymiotnik jasny
+-------- <span class="chatlog__edited-timestamp" title="30-Apr-20 01:56 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="705327604697399308" id="message-705327604697399308">
+                <div class="chatlog__content">
+                    <div class="markdown">niemcy immersyjnie zawsze klamia                      - immer =  zawsze (przysłowek)
+---------- <span class="chatlog__edited-timestamp" title="30-Apr-20 01:56 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="705327654278135858" id="message-705327654278135858">
+                <div class="chatlog__content">
+                    <div class="markdown">da - niemcy gdy bedac przy celu zapytasz o droge zawsze potakują po rusku-       &quot;da&quot; = &quot;tutaj&quot;
+----------- <span class="chatlog__edited-timestamp" title="30-Apr-20 01:56 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="705327743956680706" id="message-705327743956680706">
+                <div class="chatlog__content">
+                    <div class="markdown">Niemcy myślą o przyszłości jedynie w zaborczym charakterze - angielskie will to u nich chciec!
+------------- <span class="chatlog__edited-timestamp" title="30-Apr-20 01:56 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="705327778178007041" id="message-705327778178007041">
+                <div class="chatlog__content">
+                    <div class="markdown">duzym lassom niemcy polecaja zostawiac miny przeciwczolgowe          - lassen = polecac, zostawiac
+--------------------- <span class="chatlog__edited-timestamp" title="30-Apr-20 01:56 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="705327798511992853" id="message-705327798511992853">
+                <div class="chatlog__content">
+                    <div class="markdown">odwiedzany dziadek jest bez ucha -      besuche - odwiedzać <span class="chatlog__edited-timestamp" title="11-May-20 01:29 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="705327984004825108" id="message-705327984004825108">
+                <div class="chatlog__content">
+                    <div class="markdown">-----------------
+jeden dzien niemcy strzelali do ludzi - powiedzial ktos w radiu z niemieckim akcentem - entschuldigung mein fehler, kazdego dnia niemcy strzelali do ludzi ! 
+
+&quot;jeden&quot; = każdy /każdego <span class="chatlog__edited-timestamp" title="13-May-20 11:41 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="705328071925825616" id="message-705328071925825616">
+                <div class="chatlog__content">
+                    <div class="markdown">----------------------------
+Zgodnie z aryjskim rozporz&#228;dzeniem, za prawdziwe kobiety uznajemy dopiero kobiety zamężne - wszelkie dziewczyny i panny są dla nas nijakie !
+
+das M&#228;dchen i d&#228;s Fr&#228;ulein mają rodzaj nijaki
+----------------------------- <span class="chatlog__edited-timestamp" title="22-May-20 07:43 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="705328114556862466" id="message-705328114556862466">
+                <div class="chatlog__content">
+                    <div class="markdown">Wanda nie ściana, da sie przesunąc
+die Wand - ściana
+-------------------
+Rekultywacja Tura w puszczy kampinowskiej otwiera nowe drzwi dla naszych ZOO ! 
+die T&#252;r  - drzwi <span class="chatlog__edited-timestamp" title="05-Nov-20 12:55 AM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">30-Apr-20 01:55 PM</span>
+
+            <div class="chatlog__message " data-message-id="705386830165704724" id="message-705386830165704724">
+                <div class="chatlog__content">
+                    <div class="markdown">---------------------
+niemcy nie sortują post&#243;w według dni a wedlug tag&#243;w ...     der Tag = dzień <span class="chatlog__edited-timestamp" title="13-May-20 11:41 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="705387361172717618" id="message-705387361172717618">
+                <div class="chatlog__content">
+                    <div class="markdown">-----------------------
+Niemcy myślą o przyszłości jedynie w zaborczym charakterze - angielskie will to u nich chciec! </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="705387471063482419" id="message-705387471063482419">
+                <div class="chatlog__content">
+                    <div class="markdown">-------------------
+zostaw mojego psa w ruhu !         ruhe= spok&#243;j
+------------------- <span class="chatlog__edited-timestamp" title="19-May-20 07:43 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">02-May-20 11:32 AM</span>
+
+            <div class="chatlog__message " data-message-id="706075644328673290" id="message-706075644328673290">
+                <div class="chatlog__content">
+                    <div class="markdown">Martyna złożyla 15 tyś. stoł&#243;w                                        der Tisch - st&#243;ł <span class="chatlog__edited-timestamp" title="05-Nov-20 12:55 AM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">02-May-20 12:21 PM</span>
+
+            <div class="chatlog__message " data-message-id="706087920892772465" id="message-706087920892772465">
+                <div class="chatlog__content">
+                    <div class="markdown">------------------
+Verdun /wymowa werde/  stała sie masowym grobem Europy           -      werden  stać się zostać <span class="chatlog__edited-timestamp" title="07-May-20 03:08 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">07-May-20 04:16 PM</span>
+
+            <div class="chatlog__message " data-message-id="707959144778301522" id="message-707959144778301522">
+                <div class="chatlog__content">
+                    <div class="markdown">------------
+nachst
+&gt; 
+<div class="quote">Martyna złożyla 15 tyś. stoł&#243;w                                        der Tisch - st&#243;ł
+</div><span class="mention" title="Matball#4081">@Kucyk</span> nachstempnego dnia Martyna złożyła kolejny tysiąc stolow         - n&#228;chstem -nastepny
+------------ <span class="chatlog__edited-timestamp" title="05-Nov-20 12:56 AM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">07-May-20 04:30 PM</span>
+
+            <div class="chatlog__message " data-message-id="707962470337216523" id="message-707962470337216523">
+                <div class="chatlog__content">
+                    <div class="markdown">nioch nioch, i wez jeszcze ta kielbase co tak ladnie pachnie                    -  noch - jeszcze
+----------------- <span class="chatlog__edited-timestamp" title="05-Nov-20 12:56 AM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">07-May-20 04:59 PM</span>
+
+            <div class="chatlog__message " data-message-id="707969885107650680" id="message-707969885107650680">
+                <div class="chatlog__content">
+                    <div class="markdown">każdy chciwy niemiec chce reichu                                                                 - reich - to oprocz totalizmowego panstwa to tez oznacza bogactwo
+--------------- <span class="chatlog__edited-timestamp" title="05-Nov-20 12:56 AM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">07-May-20 05:16 PM</span>
+
+            <div class="chatlog__message " data-message-id="707974181056282654" id="message-707974181056282654">
+                <div class="chatlog__content">
+                    <div class="markdown">typowy niemiec nawachął się kleju i jest szcześliwy                              - glucklich  - szczęśliwy          (glue - klej )
+-------------- <span class="chatlog__edited-timestamp" title="05-Nov-20 12:56 AM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">07-May-20 05:35 PM</span>
+
+            <div class="chatlog__message " data-message-id="707978894640283665" id="message-707978894640283665">
+                <div class="chatlog__content">
+                    <div class="markdown">-----------
+o faktycznie
+------------- <span class="chatlog__edited-timestamp" title="05-Nov-20 12:56 AM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">07-May-20 06:24 PM</span>
+
+            <div class="chatlog__message " data-message-id="707991247591178362" id="message-707991247591178362">
+                <div class="chatlog__content">
+                    <div class="markdown">niemieccy marynarze leczą rannych poprzez wrzucanie ich w gębe krakena                          -      szpital - das KrankenHaus
+------------- <span class="chatlog__edited-timestamp" title="05-Nov-20 12:57 AM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">07-May-20 06:32 PM</span>
+
+            <div class="chatlog__message " data-message-id="707993267010011176" id="message-707993267010011176">
+                <div class="chatlog__content">
+                    <div class="markdown">durfniu, nie dalem pozwolenia na strzelanie do cywili !                                                                  - d&#252;rfen - mieć pozwolenie
+--------------- <span class="chatlog__edited-timestamp" title="05-Nov-20 12:57 AM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">07-May-20 06:59 PM</span>
+
+            <div class="chatlog__message " data-message-id="708000067440869386" id="message-708000067440869386">
+                <div class="chatlog__content">
+                    <div class="markdown">Waldemar wyrzuca puszki do lasu                                                                        - der Wald - las
+------------------ <span class="chatlog__edited-timestamp" title="05-Nov-20 12:57 AM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">07-May-20 07:45 PM</span>
+
+            <div class="chatlog__message " data-message-id="708011661742702634" id="message-708011661742702634">
+                <div class="chatlog__content">
+                    <div class="markdown">Kasia przyklejna do sukienki                                                                                   -     das Kleid  - sukienka
+<a href="https://www.youtube.com/watch?v=3ItU11wq83M">https://www.youtube.com/watch?v=3ItU11wq83M</a>
+----------- <span class="chatlog__edited-timestamp" title="05-Nov-20 12:57 AM">(edited)</span></div>
+                </div>
+
+
+                    <div class="chatlog__embed">
+                            <div class="chatlog__embed-color-pill" style="background-color: rgba(255,0,0,255)"></div>
+
+                        <div class="chatlog__embed-content-container">
+                            <div class="chatlog__embed-content">
+                                <div class="chatlog__embed-text">
+                                        <div class="chatlog__embed-author">
+
+                                                <span class="chatlog__embed-author-name">
+                                                        <a class="chatlog__embed-author-name-link" href="https://www.youtube.com/channel/UCrxiB9hbRtIZtEHPeW2mnqA">Hamilkar Barkas</a>
+                                                </span>
+                                        </div>
+
+                                        <div class="chatlog__embed-title">
+                                                <a class="chatlog__embed-title-link" href="https://www.youtube.com/watch?v=3ItU11wq83M">
+                                                    <div class="markdown">Kasia przyklejna do sukienki   dasKleid</div>
+                                                </a>
+                                        </div>
+
+
+                                </div>
+
+                                    <div class="chatlog__embed-thumbnail-container">
+                                        <a class="chatlog__embed-thumbnail-link" href="https://i.ytimg.com/vi/3ItU11wq83M/maxresdefault.jpg">
+                                            <img class="chatlog__embed-thumbnail" src="https://i.ytimg.com/vi/3ItU11wq83M/maxresdefault.jpg" alt="Thumbnail">
+                                        </a>
+                                    </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 12:18 AM</span>
+
+            <div class="chatlog__message " data-message-id="708442675828883516" id="message-708442675828883516">
+                <div class="chatlog__content">
+                    <div class="markdown">rodzajniki - genitiv                                                 Genitalia Sakiewicza R&#243;żowieją                                genitiv : r.m. des r.ż. der r.n. des lmno. der
+------------------
+rodzajniki - dativ                                                    Demostenes i Miltiades - Reformatorzy ateńscy   dativ : r.m. dem r.ż. der r.n. dem lmno. der
+----------------- <span class="chatlog__edited-timestamp" title="05-Nov-20 12:57 AM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 11:23 AM</span>
+
+            <div class="chatlog__message " data-message-id="708610007939416065" id="message-708610007939416065">
+                <div class="chatlog__content">
+                    <div class="markdown">Niemiecka dokładność - Niemieccy faszyści nawet by wyśmiać                                   
+biedne mr&#243;wki piszą wniosek do parlamentu
+
+- der Antrag - wniosek (ant mr&#243;wka) <span class="chatlog__edited-timestamp" title="05-Nov-20 12:57 AM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 12:14 PM</span>
+
+            <div class="chatlog__message " data-message-id="708622927460827166" id="message-708622927460827166">
+                <div class="chatlog__content">
+                    <div class="markdown">------------------------------------------
+po niemiecku nawet list potrafi być podstępny                                                                 - die List  - podstęp </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 12:34 PM</span>
+
+            <div class="chatlog__message " data-message-id="708628027461992478" id="message-708628027461992478">
+                <div class="chatlog__content">
+                    <div class="markdown">---------------------
+Niemcy juz w starożytnosci pedzili przed sobą etruskǫw                                                 rasen -gnać, pedzić    , etruskowie po etrusku w wymowie Rasenna </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">10-May-20 11:47 AM</span>
+
+            <div class="chatlog__message " data-message-id="708978514468143154" id="message-708978514468143154">
+                <div class="chatlog__content">
+                    <div class="markdown">-------------------------
+Według danych federalnego urzędu statystycznego,  grupa społeczna z  najwieksza liczbe zlodzieji (oczywiście po polakach ) 
+jest  wśr&#243;d 
+
+klauen - buchnąć, ukraść
+(po polakach), wśrod klaun&#243;w <span class="chatlog__edited-timestamp" title="07-Sep-20 01:47 AM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">10-May-20 12:59 PM</span>
+
+            <div class="chatlog__message " data-message-id="708996685354893332" id="message-708996685354893332">
+                <div class="chatlog__content">
+                    <div class="markdown">-------------------------
+z powodu wegen świat stał sie strasznym miejscem !                                                                wegen - z powodu <span class="chatlog__edited-timestamp" title="10-May-20 01:10 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="708997163526651945" id="message-708997163526651945">
+                <div class="chatlog__content">
+                    <div class="markdown">------------------------
+W na zachodzie bez zmian, koniec(end) nastapil podczas wahty                                     w&#228;hrend - podczas, w trakcie </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">10-May-20 01:14 PM</span>
+
+            <div class="chatlog__message " data-message-id="709000490524082217" id="message-709000490524082217">
+                <div class="chatlog__content">
+                    <div class="markdown">-------------------------
+czyj to kotlet ? a czy to wazne? jedz !                                                                                       wessen - czyj ( essen - jeść ) </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">10-May-20 01:21 PM</span>
+
+            <div class="chatlog__message " data-message-id="709002252224036905" id="message-709002252224036905">
+                <div class="chatlog__content">
+                    <div class="markdown">-------------------------
+kebab &quot;u beja, &quot;                                                                                                                              bei -  przyimek, głownie tlumaczymy jako &quot;u&quot; </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">11-May-20 01:20 PM</span>
+
+            <div class="chatlog__message " data-message-id="709364300174852096" id="message-709364300174852096">
+                <div class="chatlog__content">
+                    <div class="markdown">------------------------
+Czekanie na zmianę, gdy jesteś na warcie, zawsze się dłuży                                               warten - czekać </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="709365267922157640" id="message-709365267922157640">
+                <div class="chatlog__content">
+                    <div class="markdown">------------------------
+Alternatywą jest micha za dychę i ihujowe naczynie                        Akkusativ 1.lpoj mich(mnie) 2.lpoj dich(ciebie) 3.lpoj,m.  ihn(jego) <span class="chatlog__edited-timestamp" title="23-May-20 03:37 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">11-May-20 01:40 PM</span>
+
+            <div class="chatlog__message " data-message-id="709369371645968464" id="message-709369371645968464">
+                <div class="chatlog__content">
+                    <div class="markdown">-----------------------
+3 formy 
+Batmanie ! prosze o pomoc  !                                           prosić             bitten   bat   gebeten
+------
+usmażyć brata w sosie meksykańskim                          smażyć           braten briet gebraten
+------
+oszukiwać bedąc na rogu ulic                                          oszukiwać     betr&#252;gen betrog betrogen
+------
+pachnię to 3 reichem!                                                        pachnięć       riech roch gerochen
+------
+biss ugryzl mnie w pysk !                                                  gryźć              bei&#223;en biss gebissen 
+------
+Wir sind verloren x3                                                          gubić, tracić verlieren verlor verloren
+------
+zapomnialem ze  chce very jesc!                        zapominać   vergessen verga&#223; vergessen
+------
+traf chciał ze ją spotkalem!                                             &#160; spotykać       treffen traf getroffen
+-------
+skacząca pani wiosna                                                        skakać           springen sprang gesprungen
+-------
+starbucks to powolna śmierć                                           umierać         sterben starb gestorben
+-------
+malować strych                                                                  malować       streichen strich gestrichen
+-------
+latający vlog gonciarza                                                      latać               fliegen flog geflogen
+-------
+gej idzie napity ginem                                                        isc                   gehen ging gegangen
+------- <span class="chatlog__edited-timestamp" title="05-Nov-20 12:59 AM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="709369455054028860" id="message-709369455054028860">
+                <div class="chatlog__content">
+                    <div class="markdown">pomagac tylko w polowie                                                 pomagać       helfen half geholfen   
+--------
+ładować lud polski pod lade obozu                                 ładować         laden lud geladen
+--------
+leżąc na suficie, łapie laga w grze                                    leżec               liegen lag gelegen
+--------
+logi zawsze kłamią !                                                            kłamać           l&#252;gen log gelogen
+--------
+złapać fange w nos !                                                            łapać              fangen fing gefangen
+-------
+gal-&#243;w obowiazuje noszenie wąs&#243;w!                              obowiązywać gelten galt gegalten <span class="chatlog__edited-timestamp" title="05-Nov-20 01:00 AM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">12-May-20 11:26 AM</span>
+
+            <div class="chatlog__message " data-message-id="709697955346776165" id="message-709697955346776165">
+                <div class="chatlog__content">
+                    <div class="markdown">------------------------
+Owoce przybywają do Rzeszy zawsze z wschodu (OST)                                                        das Obst - owoce <span class="chatlog__edited-timestamp" title="07-Sep-20 09:25 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="709699384681431072" id="message-709699384681431072">
+                <div class="chatlog__content">
+                    <div class="markdown">--------------------------
+Wiekszość ludzi wie po niemiecku co najwyzej JAK sie nazywa                                           ger. Wie - pl. Jak </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">12-May-20 11:43 AM</span>
+
+            <div class="chatlog__message " data-message-id="709702258576850975" id="message-709702258576850975">
+                <div class="chatlog__content">
+                    <div class="markdown">--------------------------
+Ruski mir niezbyt mi się podoba                                                                                                  ger. mir - pl. mi, mnie </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">12-May-20 11:58 AM</span>
+
+            <div class="chatlog__message " data-message-id="709706067793412128" id="message-709706067793412128">
+                <div class="chatlog__content">
+                    <div class="markdown">--------------------------
+Dając mirę schował go do folderu z hummusem                                                       Dativ - 1lpoj mir  2lpoj dir (dir to tez folder) 3 poj ihm <span class="chatlog__edited-timestamp" title="13-May-20 12:03 AM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">12-May-20 06:24 PM</span>
+
+            <div class="chatlog__message " data-message-id="709803163007582250" id="message-709803163007582250">
+                <div class="chatlog__content">
+                    <div class="markdown">----------------------------
+Leia jest facetem, niestety                                                                                                      leider  - niestety        -(der rodzajnik meski ) <span class="chatlog__edited-timestamp" title="13-May-20 08:34 AM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">12-May-20 06:35 PM</span>
+
+            <div class="chatlog__message " data-message-id="709805922184069171" id="message-709805922184069171">
+                <div class="chatlog__content">
+                    <div class="markdown">--------------------------------
+Duda pomaga sie uczyc niemieckiego -                                          Was machst du da   ?            Co robisz tutaj ?(duda)? <span class="chatlog__edited-timestamp" title="13-May-20 08:34 AM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">12-May-20 06:47 PM</span>
+
+            <div class="chatlog__message " data-message-id="709808975054504057" id="message-709808975054504057">
+                <div class="chatlog__content">
+                    <div class="markdown">-------------------------------
+niemcy są przyzwyczajeni ze w swoim imperium wyłacznie rozkazują                     -        imperativ  - tryb rozkazujący <span class="chatlog__edited-timestamp" title="13-May-20 08:34 AM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">12-May-20 09:31 PM</span>
+
+            <div class="chatlog__message " data-message-id="709850189686505562" id="message-709850189686505562">
+                <div class="chatlog__content">
+                    <div class="markdown">-----------------------------
+Wo vs Wohin  -             wo jest leniwe bo jest krotsze, wohin jest zaradne aktywne i ruchliwe - <span class="chatlog__edited-timestamp" title="13-May-20 08:34 AM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">12-May-20 09:58 PM</span>
+
+            <div class="chatlog__message " data-message-id="709857047566352395" id="message-709857047566352395">
+                <div class="chatlog__content">
+                    <div class="markdown">----------------------------
+ABCD                 - Akkusativ(Biernik)  , (Celownik) Dativ <span class="chatlog__edited-timestamp" title="13-May-20 08:34 AM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">13-May-20 08:33 AM</span>
+
+            <div class="chatlog__message " data-message-id="710016966034718741" id="message-710016966034718741">
+                <div class="chatlog__content">
+                    <div class="markdown">------------------------------
+worek z kamieniami na plecach dziecka - normalny widok w rzeszy niemieckiej
+                                                                            - rock(kamien) ,sack(worek)  - der Rucksack - plecak <span class="chatlog__edited-timestamp" title="07-Sep-20 09:40 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">13-May-20 05:22 PM</span>
+
+            <div class="chatlog__message " data-message-id="710150075841642566" id="message-710150075841642566">
+                <div class="chatlog__content">
+                    <div class="markdown">------------------------------
+doch olery jednak kod nie działa !                                                                                        - doch  - jednak </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710150321153769544" id="message-710150321153769544">
+                <div class="chatlog__content">
+                    <div class="markdown">----------------------------------
+czasem i Jaś  ma szmal                                                                 -                                    - manchmal -  czasem, niekiedy <span class="chatlog__edited-timestamp" title="13-May-20 05:28 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 12:32 AM</span>
+
+            <div class="chatlog__message " data-message-id="710258299018149898" id="message-710258299018149898">
+                <div class="chatlog__content">
+                    <div class="markdown">--------------------------
+za pomocą mit-&#243;w wytlumaczono ziemską przyrodę                                                             mit - z, za pomocą 
+
+
+<a href="https://www.youtube.com/watch?v=T2YiuxLAX-s">https://www.youtube.com/watch?v=T2YiuxLAX-s</a> - mit przyimek
+---------------------- <span class="chatlog__edited-timestamp" title="14-May-20 12:45 AM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 01:16 PM</span>
+
+            <div class="chatlog__message " data-message-id="710450365102817280" id="message-710450365102817280">
+                <div class="chatlog__content">
+                    <div class="markdown">czy mamy  bombardować Belgrad, gen Nauman?  - dokladnie to przecież powiedziałem żolnierzu !                                       genau -  dokladnie
+---------------------- </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 02:29 PM</span>
+
+            <div class="chatlog__message " data-message-id="710468802906947625" id="message-710468802906947625">
+                <div class="chatlog__content">
+                    <div class="markdown">polish - polnische, french  franz&#246;sisch   in german every lang.e has longer name !                                                        -       lange -długi 
+------------------------ <span class="chatlog__edited-timestamp" title="15-May-20 01:30 AM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 02:48 PM</span>
+
+            <div class="chatlog__message " data-message-id="710473506693054566" id="message-710473506693054566">
+                <div class="chatlog__content">
+                    <div class="markdown">Verges obejmując wladze, zapomnial o wolnorynkowych ideach ( w sumie jak tusk )                           -  vergessen - zapomnieć , Getulio Vargas - prezydent brazylii </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">15-May-20 01:54 PM</span>
+
+            <div class="chatlog__message " data-message-id="710822343735377920" id="message-710822343735377920">
+                <div class="chatlog__content">
+                    <div class="markdown">-----------------------
+mal-ec zawsze musie poparzyc ten pierwszy raz                                                      - mal -  raz </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">15-May-20 02:11 PM</span>
+
+            <div class="chatlog__message " data-message-id="710826755706978366" id="message-710826755706978366">
+                <div class="chatlog__content">
+                    <div class="markdown">------------------------
+spiewanie hurys w niebie - taki to dar od allacha !                                                    - h&#246;ren - śpiewać   - hurysa - istnieje plota że jak dobry muzułmanin umrze za  wiare, to w niebie bedzie miał 72 hot 33-tr&#243;jki kt&#243;re tak sie na polski  przetlumaczylo <span class="chatlog__edited-timestamp" title="05-Nov-20 01:01 AM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">15-May-20 07:55 PM</span>
+
+            <div class="chatlog__message " data-message-id="710913367166025758" id="message-710913367166025758">
+                <div class="chatlog__content">
+                    <div class="markdown">--------------------------
+bogaty bauer  buduje  3 dom                                                                                     -          bauen - budować  , bauer - rolnik <span class="chatlog__edited-timestamp" title="07-Sep-20 10:09 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">15-May-20 08:13 PM</span>
+
+            <div class="chatlog__message " data-message-id="710917814554460200" id="message-710917814554460200">
+                <div class="chatlog__content">
+                    <div class="markdown">--------------------------
+f&#252;ra dla każdego  za poparcie f&#252;hrera !                                                                                            -  f&#252;r  - za ( czymś) </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710919341113344020" id="message-710919341113344020">
+                <div class="chatlog__content">
+                    <div class="markdown">---------------------------
+na serwerze CS zapytałem druzyne o liczbe frag&#243;w                                                                         - fragen - prosić , frag - liczba killi w grach
+------------------------- <span class="chatlog__edited-timestamp" title="16-May-20 03:55 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710919644289957889" id="message-710919644289957889">
+                <div class="chatlog__content">
+                    <div class="markdown">cholera, sztefan znowu na angielskim napisales wort zamiast word !                                           - wort = wort </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">16-May-20 03:57 PM</span>
+
+            <div class="chatlog__message " data-message-id="711215775863668816" id="message-711215775863668816">
+                <div class="chatlog__content">
+                    <div class="markdown">--------------------------
+etch WAS o coś się  spytać !                                                                                                                 - etwas - coś <span class="chatlog__edited-timestamp" title="07-Sep-20 10:12 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="711216798783111198" id="message-711216798783111198">
+                <div class="chatlog__content">
+                    <div class="markdown">----------------------------
+uuuu Ben widać ze dużo ćwiczyłeś !                                                                                                  - &#252;ben - ćwiczyć </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">16-May-20 05:33 PM</span>
+
+            <div class="chatlog__message " data-message-id="711239811524067399" id="message-711239811524067399">
+                <div class="chatlog__content">
+                    <div class="markdown">---------------------------------
+tak to juz jest ze kobiety z anzeheimerem zapominają nalozyc sukienki                                    -  anziehen - nałozyc ubranie </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">16-May-20 05:47 PM</span>
+
+            <div class="chatlog__message " data-message-id="711243375851864104" id="message-711243375851864104">
+                <div class="chatlog__content">
+                    <div class="markdown">--------------------------------
+Majtku Latusek wzywam cię na rufę !                                                                                            - rufen - wzywać, wołać <span class="chatlog__edited-timestamp" title="16-May-20 05:48 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">16-May-20 08:48 PM</span>
+
+            <div class="chatlog__message " data-message-id="711288941348782140" id="message-711288941348782140">
+                <div class="chatlog__content">
+                    <div class="markdown">-------------------- <span class="chatlog__edited-timestamp" title="16-May-20 09:00 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">16-May-20 08:59 PM</span>
+
+            <div class="chatlog__message " data-message-id="711291879471186000" id="message-711291879471186000">
+                <div class="chatlog__content">
+                    <div class="markdown">Wer-onika zawsze poplotkuje kto jest kim                                                                                             - Wer - kto </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">17-May-20 09:04 PM</span>
+
+            <div class="chatlog__message " data-message-id="711655458636824636" id="message-711655458636824636">
+                <div class="chatlog__content">
+                    <div class="markdown">----------------------
+konkurencja Windowsa z Linuxem nie jest do końca FER                                                                         - das Fernster - okno, a po angielsku to jest Windows
+---------------------- <span class="chatlog__edited-timestamp" title="22-May-20 06:43 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="711655915992121384" id="message-711655915992121384">
+                <div class="chatlog__content">
+                    <div class="markdown">pott na szkopskiej łajbie leje sie strumieniami                                                                                        -    der Pott - w nieformalnym łajba (albo garnek) </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="711657574394626161" id="message-711657574394626161">
+                <div class="chatlog__content">
+                    <div class="markdown">-----------------------
+psy hasskie są brzydkie !                                                                                                                                     - h&#228;sslich - brzydki
+----------------------- <span class="chatlog__edited-timestamp" title="17-May-20 09:13 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">20-May-20 01:41 PM</span>
+
+            <div class="chatlog__message " data-message-id="712630976399802379" id="message-712630976399802379">
+                <div class="chatlog__content">
+                    <div class="markdown">dziurawe wiadro pojawia się w każdym komediowym filmie lat 20tych                                               - ger. wiederholen - pl. powtarzać
+------------------------- <span class="chatlog__edited-timestamp" title="07-Sep-20 10:15 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">21-May-20 05:35 PM</span>
+
+            <div class="chatlog__message " data-message-id="713052426600579093" id="message-713052426600579093">
+                <div class="chatlog__content">
+                    <div class="markdown">Sind-bad w wielu odcinkach wpadał w WIR-y                                                                                        - sein dla 1 i 3 osoby liczby mnogiej to  SIND ! </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">21-May-20 07:34 PM</span>
+
+            <div class="chatlog__message " data-message-id="713082372714921989" id="message-713082372714921989">
+                <div class="chatlog__content">
+                    <div class="markdown">--------------------------
+Walijski to jednak język przez kt&#243;ry anglicy mają krzywy zgryz                                                          - welsch - kt&#243;ry ( walches -   walijski ) <span class="chatlog__edited-timestamp" title="22-May-20 06:42 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="713083437258637313" id="message-713083437258637313">
+                <div class="chatlog__content">
+                    <div class="markdown">---------------------------
+ZUS razem z rządem zdziera z nas olbrzymie&#160;pieniądze                                                                        - zusammen  - razem 
+--------------------------- </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="713083707631730699" id="message-713083707631730699">
+                <div class="chatlog__content">
+                    <div class="markdown">Kiedy wanna będzie woolna !?!                                                                                                                    - ger. wann  - kiedy </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="713084140093702236" id="message-713084140093702236">
+                <div class="chatlog__content">
+                    <div class="markdown">---------------------------
+niemcy dużo rejsują po świecie                                                                                                                     - ger. reisen - pl. podr&#243;żować </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">21-May-20 08:17 PM</span>
+
+            <div class="chatlog__message " data-message-id="713093198490239007" id="message-713093198490239007">
+                <div class="chatlog__content">
+                    <div class="markdown">--------------------------
+uderzenie klingi w hełm zadzwoniła nam po uszach                                                                                - ger . klingen - dzwonić     -klinga to po polsku głownia broni białej </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">21-May-20 08:48 PM</span>
+
+            <div class="chatlog__message " data-message-id="713101051191885936" id="message-713101051191885936">
+                <div class="chatlog__content">
+                    <div class="markdown">---------------------------
+pieprzeni mandaryni - nikogo nie wpuszczą                                                                                                 - ger.  nomand - nikogo        - mandaryn  - urzędnik w starych chinach </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">21-May-20 09:20 PM</span>
+
+            <div class="chatlog__message " data-message-id="713108899661611018" id="message-713108899661611018">
+                <div class="chatlog__content">
+                    <div class="markdown">----------------------------
+Seit Zeit            - od czas                                                                                                                                      -ger. Seit - pl. od </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">21-May-20 11:11 PM</span>
+
+            <div class="chatlog__message " data-message-id="713136926252597358" id="message-713136926252597358">
+                <div class="chatlog__content">
+                    <div class="markdown">--------------------------
+żur jest uwielbiany  przez kobiety wszelkich ras karnacji i wieku !   - ger, zur  wyraża kierunek w stosunku do obiektu rodzaju żeńskiego, np. zur Bank <span class="chatlog__edited-timestamp" title="21-May-20 11:12 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">21-May-20 11:22 PM</span>
+
+            <div class="chatlog__message " data-message-id="713139738105741314" id="message-713139738105741314">
+                <div class="chatlog__content">
+                    <div class="markdown">---------------------------
+Niewielu wierze ze BAH stracił słuch właśnie w wiedeńskim metrze !                     -  u-Bahn - metro </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="713141356226150570" id="message-713141356226150570">
+                <div class="chatlog__content">
+                    <div class="markdown">------------------------
+bra(u)ch wiecznie potrzebuje pomocy                                                                             - brauchen - pomagać </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">22-May-20 01:05 PM</span>
+
+            <div class="chatlog__message " data-message-id="713346853722259516" id="message-713346853722259516">
+                <div class="chatlog__content">
+                    <div class="markdown">--------------------------
+Po filmie braci siekielskich ludzie zaszlechtowali paru ZŁYCH  księży                     -  schlecht - zły </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">22-May-20 03:26 PM</span>
+
+            <div class="chatlog__message " data-message-id="713382246769492008" id="message-713382246769492008">
+                <div class="chatlog__content">
+                    <div class="markdown">------------------------
+Przyimki DATIV
+
+Debilny AUStryjacki BEIa z sławnego MIT, żarł NACH-osy w nigeryjskim SEAITCIE  (SEIT )  wraz z VON ZUlusem
+Dativ      aus                bei                         mit            nach                                       SEIT                                      VON      ZU <span class="chatlog__edited-timestamp" title="22-May-20 06:40 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="713383114726178857" id="message-713383114726178857">
+                <div class="chatlog__content">
+                    <div class="markdown">-------------------
+Tomek zawsze je NACH-osy po południu                                                                 - ger. nach - pl.  po <span class="chatlog__edited-timestamp" title="22-May-20 03:30 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">22-May-20 04:27 PM</span>
+
+            <div class="chatlog__message " data-message-id="713397757045374976" id="message-713397757045374976">
+                <div class="chatlog__content">
+                    <div class="markdown">-----------------
+um-lauty są  wszędzie wok&#243;ł                                                                                         - ger. um - pl. wok&#243;ł, dookoła, o ( np. walczyc o coś )
+mnisi  przy robieniu &quot;uuummmmm&quot; robią ustami okrąg <span class="chatlog__edited-timestamp" title="22-May-20 04:28 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="713398867600867358" id="message-713398867600867358">
+                <div class="chatlog__content">
+                    <div class="markdown">----------------
+węgierskie zegarki mają dduże poważanie                                                                - po czesku węgry to uhersko - wiec die Uhr - zegar </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">22-May-20 06:39 PM</span>
+
+            <div class="chatlog__message " data-message-id="713430968907858092" id="message-713430968907858092">
+                <div class="chatlog__content">
+                    <div class="markdown">----------------
+Kusy zawsze spędza urlop w Ur w laboratorium                                                       -ger. der Urlaub - urlop
+--------------- </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">22-May-20 07:48 PM</span>
+
+            <div class="chatlog__message " data-message-id="713448323356295239" id="message-713448323356295239">
+                <div class="chatlog__content">
+                    <div class="markdown">daj r&#243;że tej ładnej blondynce - powiedziała mama. Kusy oburzony - ja już WEM komu mam dać matka !             - ger. wem  - pl. komu </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">22-May-20 08:22 PM</span>
+
+            <div class="chatlog__message " data-message-id="713456847691972740" id="message-713456847691972740">
+                <div class="chatlog__content">
+                    <div class="markdown">--------------
+W wilczym szańcu prezent od ge.Schenka Staffenberga była mordercza                            -  ger geschenk - prezent
+<a href="https://pl.wikipedia.org/wiki/Claus_Schenk_Graf_von_Stauffenberg">https://pl.wikipedia.org/wiki/Claus_Schenk_Graf_von_Stauffenberg</a> - ten od bomby
+w wilczym szańcu </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">23-May-20 11:51 AM</span>
+
+            <div class="chatlog__message " data-message-id="713690447146516492" id="message-713690447146516492">
+                <div class="chatlog__content">
+                    <div class="markdown">--------------
+AUStria zrezygnowała Z Wegier, Czech i reszty imperium                                                     - ger. aus    pl. z (czegoś) <span class="chatlog__edited-timestamp" title="21-Sep-20 08:45 AM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">23-May-20 12:08 PM</span>
+
+            <div class="chatlog__message " data-message-id="713694887685390336" id="message-713694887685390336">
+                <div class="chatlog__content">
+                    <div class="markdown">----------------
+kAUFland PO NAs posprząta                                                                                                      - ger. auf   pl. 1)po 2)na
+---------------- <span class="chatlog__edited-timestamp" title="07-Sep-20 10:28 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">23-May-20 03:50 PM</span>
+
+            <div class="chatlog__message " data-message-id="713750637107740723" id="message-713750637107740723">
+                <div class="chatlog__content">
+                    <div class="markdown">Akkusativ . Dativ       
+Dalmackie USNavy zatrudnia  ihn-iejszych eunuch&#243;w                           - dativ lmno 1 uns 2.euch 3. ihn, Ihn
+Argentyńskie USNavy zatrudnia SIE-mensowych eunuch&#243;w                - akkusativ lmno 1. uns 2.euch. 3. sie, Sie </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">23-May-20 07:16 PM</span>
+
+            <div class="chatlog__message " data-message-id="713802632862367874" id="message-713802632862367874">
+                <div class="chatlog__content">
+                    <div class="markdown">----------------
+A WEZH na święta NACHosa...no tak to TEN sklep                                 - ger. weihnachten pl. święta </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="713803926079537263" id="message-713803926079537263">
+                <div class="chatlog__content">
+                    <div class="markdown">----------------
+No i schloos  - krzyknął Hans, zamykając wagon  z zawartymi wieźniami        - ger. schlossen pl. zamykać, zawierać <span class="chatlog__edited-timestamp" title="07-Sep-20 10:39 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="713804787337920534" id="message-713804787337920534">
+                <div class="chatlog__content">
+                    <div class="markdown">---------------
+Niemieckie nastolatki są strasznie liche pod względem kregoslupa moralnego         - ger. Jugendliche pl. młodzież </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="713804945635147787" id="message-713804945635147787">
+                <div class="chatlog__content">
+                    <div class="markdown">-------------
+Polskie Firmy są wręcz stworzone na niemiecki rynek                                   - ger. firma pl. firma </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="713805232684924978" id="message-713805232684924978">
+                <div class="chatlog__content">
+                    <div class="markdown">--------------
+kolega w pracy to jest mit   - szczeg&#243;lnie gdy jest niemcem !                       - ger. mitarbeiter pl. wsp&#243;łpracownik </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="713805434875674664" id="message-713805434875674664">
+                <div class="chatlog__content">
+                    <div class="markdown">--------------
+Herbate w Bawari zbierają na jesień                                                                  - ger. Herbst pl. jesień <span class="chatlog__edited-timestamp" title="23-May-20 10:00 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="713805814959439993" id="message-713805814959439993">
+                <div class="chatlog__content">
+                    <div class="markdown">---------------
+I wtedy własnie dannowie zaatakowali Troję !                                                  - ger. dann pl. wtedy </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">26-May-20 11:01 PM</span>
+
+            <div class="chatlog__message " data-message-id="714946434121596959" id="message-714946434121596959">
+                <div class="chatlog__content">
+                    <div class="markdown">---------------
+Sp&#243;jniki wsp&#243;łrzedne
+Saudo-wie to są chłopaki z dużym sadłem             - Aduso/Saudo       - Szyk prosty po sp&#243;jnikach
+
+TEGO NIE ROBILEm bo nie kojarze o co mi chodziło <span class="chatlog__edited-timestamp" title="07-Sep-20 10:42 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="714946741895430255" id="message-714946741895430255">
+                <div class="chatlog__content">
+                    <div class="markdown">-----------
+Ale przecież abel nie chciał  zabić brata                   - aber - ale </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">18-Sep-20 09:01 PM</span>
+
+            <div class="chatlog__message " data-message-id="756590852650041497" id="message-756590852650041497">
+                <div class="chatlog__content">
+                    <div class="markdown">------
+Jemand 
+
+Ktoś mi ciągle je mand-ragore ! krzyknąła hermiona 
+
+Jemand - Ktoś <span class="chatlog__edited-timestamp" title="24-Sep-20 08:33 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">24-Sep-20 08:33 PM</span>
+
+            <div class="chatlog__message " data-message-id="758757958208585838" id="message-758757958208585838">
+                <div class="chatlog__content">
+                    <div class="markdown">------- </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="758758228224901131" id="message-758758228224901131">
+                <div class="chatlog__content">
+                    <div class="markdown">wisssiałem wiedząc kto wygra tą wojne
+
+Wissen - wiedzieć
+----- </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="758759621593792522" id="message-758759621593792522">
+                <div class="chatlog__content">
+                    <div class="markdown">Głosując na austryjackiego Witosa stimulowałem  GŁOS  nie ZGADZAJĄC się by rządzili niemieccy faszysta
+
+Obecnie premierem austrii jest kurz sebastian, szef austryjackiej partii ludowej
+stimmen a stymulować  (wiem wiem, genialne )
+stimmen - czasownik : 1.zgadzać się 2. głosować
+die Stimmen - rzeczownik głos - w sensie oddać głos jak i dać głos <span class="chatlog__edited-timestamp" title="05-Nov-20 01:02 AM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="758759877899452427" id="message-758759877899452427">
+                <div class="chatlog__content">
+                    <div class="markdown">--------------
+JarKacz jest całkiem niezłym ganzsterem
+
+ganz 1. cały 2. zupełny nienaruszony, pełny
+--------------
+
+Ludzie Leute-nanta właśnie r&#243;wnają z ziemią wieś Lidice
+
+die leute ( di lojt ) - ludzie
+--------------
+M&#246;glich - możliwy
+
+Czy muglbyś(m&#243;głbyś) mi pom&#243;c?
+To nie możliwe
+--------------
+stark - przym. mocny przysl. mocno
+
+Ta gwiazda silnie świeci (stark brzmi podobnie do ang. star)
+
+--------------
+oder - sp&#243;jnik: albo lub bądź
+
+oderwijcie jej rękę albo ona umrzę
+-------------- <span class="chatlog__edited-timestamp" title="05-Nov-20 01:02 AM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">26-Sep-20 12:45 PM</span>
+
+            <div class="chatlog__message " data-message-id="759365131771183124" id="message-759365131771183124">
+                <div class="chatlog__content">
+                    <div class="markdown">toten - zmarły/martwy
+
+martwych niemc&#243;w chowa się w grobie przypominających indiański toten (totem)
+-------------------
+
+der Tod - śmierć 
+
+Niemcy są ta skrupalatni w swoich lista todo - rzeczy do zrobienia, że ostatnia pozycja do odchaczenia to ich własna śmierć
+--------------------
+Rauch - der Rauch - dym 
+
+Szef MSZ - Zbigniew Rauch cholernie lubi puścić sobie dymek w pracy
+-------------------
+dort - przysł&#243;wek dort - tam
+
+Lewandowski, tam w Dort-mundzie dopier grał
+-------------------
+laut - przym. głośny der laut dźwiek/głoska
+
+Ej to był aut widziałem głośno i wyraźnie
+---------------- <span class="chatlog__edited-timestamp" title="10-Oct-20 08:50 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">26-Sep-20 12:53 PM</span>
+
+            <div class="chatlog__message " data-message-id="759367153131847691" id="message-759367153131847691">
+                <div class="chatlog__content">
+                    <div class="markdown">Schmerz - der Schmerz - b&#243;l
+
+Ała, co za b&#243;l i to wszystko przez ten szmerzc ! 
+----------------- <span class="chatlog__edited-timestamp" title="10-Oct-20 07:24 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="759367172890951680" id="message-759367172890951680">
+                <div class="chatlog__content">
+                    <div class="markdown">durch  - przez, poprzez
+
+Na hopaku cios durchan (durch ) ma przejść poprzez lewe ucho na prawej cześci podbr&#243;dku kończąc
+--------------- <span class="chatlog__edited-timestamp" title="10-Oct-20 07:27 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="759367211021369355" id="message-759367211021369355">
+                <div class="chatlog__content">
+                    <div class="markdown">kehrt - kehren - zawracać 
+
+Karen (Kehren) zawraca mi w głowie!
+-------------- <span class="chatlog__edited-timestamp" title="10-Oct-20 07:28 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="759367242906861568" id="message-759367242906861568">
+                <div class="chatlog__content">
+                    <div class="markdown">zur&#252;ck - z powrotem 
+
+Jak wiadomo żur ck kulinarną jest chlubą ck kuchnii ... i dlatego z zawszem wraca z powrotem do kuchnii
+------------- <span class="chatlog__edited-timestamp" title="10-Oct-20 07:36 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="759367291459862548" id="message-759367291459862548">
+                <div class="chatlog__content">
+                    <div class="markdown">sinn - ger sens, sin - grzech
+
+czynienie grzechu to cały sens życia każdego niemca
+-------------
+ger. bald(wkr&#243;tce) - ang bald (łysy) -  wkr&#243;tce
+
+każdy Niemiec po 30 tce wkr&#243;tce będzie łysy
+-------------- tu skończylem 10.10.2020 <span class="chatlog__edited-timestamp" title="10-Oct-20 08:58 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="759367352876793896" id="message-759367352876793896">
+                <div class="chatlog__content">
+                    <div class="markdown">ran - polskie tu 
+ wszyscy niemcy biegną tu
+------------- <span class="chatlog__edited-timestamp" title="17-Oct-20 10:36 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="759367359269175387" id="message-759367359269175387">
+                <div class="chatlog__content">
+                    <div class="markdown">ziel - cel 
+Ziel-ony punkt jest moim celem <span class="chatlog__edited-timestamp" title="17-Oct-20 10:41 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="759367388734423060" id="message-759367388734423060">
+                <div class="chatlog__content">
+                    <div class="markdown">--------------
+blut krew
+Brother has my blut group <span class="chatlog__edited-timestamp" title="17-Oct-20 10:41 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="759367433487253544" id="message-759367433487253544">
+                <div class="chatlog__content">
+                    <div class="markdown">----------------
+verfluchten - przekleństwo
+ciężka grypa to przekleństwo Niemiec      - grypa to po angielsku flu,  very to bardzo <span class="chatlog__edited-timestamp" title="17-Oct-20 10:43 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="759367496213725224" id="message-759367496213725224">
+                <div class="chatlog__content">
+                    <div class="markdown">----------------
+verschollen - zaginiony 
+bardzo wiele dzieci staje się zaginionych tuż po wyjściu ze szkoły <span class="chatlog__edited-timestamp" title="17-Oct-20 10:45 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="759368756043448330" id="message-759368756043448330">
+                <div class="chatlog__content">
+                    <div class="markdown">-------------
+nur - tylko/jedynie
+nur f&#252;r deutsche <span class="chatlog__edited-timestamp" title="17-Oct-20 10:46 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="759368832590151701" id="message-759368832590151701">
+                <div class="chatlog__content">
+                    <div class="markdown">----------
+k&#252;hlen -  chłodzić
+mierzymy jak długo trzeba wychłodzić krowę - der Kuh - krowa,  w programowaniu mamy czesto funkcję len kt&#243;ra bada długość <span class="chatlog__edited-timestamp" title="17-Oct-20 10:47 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="759368881977950245" id="message-759368881977950245">
+                <div class="chatlog__content">
+                    <div class="markdown">------------
+nieder - niski
+niscy samcy nie są prawdziwymi facetami - der - rodzajnik męski <span class="chatlog__edited-timestamp" title="17-Oct-20 10:48 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">04-Oct-20 08:19 PM</span>
+
+            <div class="chatlog__message " data-message-id="762378463742525470" id="message-762378463742525470">
+                <div class="chatlog__content">
+                    <div class="markdown">-----------
+der Wein - wino
+Niemcy uwielbiają wejeńskie wino   weje - miosto Etruskie z kt&#243;rą walczyli Rzymianie <span class="chatlog__edited-timestamp" title="17-Oct-20 10:49 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">04-Oct-20 08:33 PM</span>
+
+            <div class="chatlog__message " data-message-id="762381964547588096" id="message-762381964547588096">
+                <div class="chatlog__content">
+                    <div class="markdown">-------------
+zusammen - razem
+ZUS złączył nas wszystkich razem na AMMEN
+19.10.2020 -  HAMILKARZE tu skończyłeś <span class="chatlog__edited-timestamp" title="05-Nov-20 01:02 AM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">09-Oct-20 04:22 PM</span>
+
+            <div class="chatlog__message " data-message-id="764130625598521356" id="message-764130625598521356">
+                <div class="chatlog__content">
+                    <div class="markdown">Alter </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">10-Oct-20 02:17 PM</span>
+
+            <div class="chatlog__message " data-message-id="764461491885047838" id="message-764461491885047838">
+                <div class="chatlog__content">
+                    <div class="markdown">fett </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="764462687161417758" id="message-764462687161417758">
+                <div class="chatlog__content">
+                    <div class="markdown">nachdem </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="764464312567201803" id="message-764464312567201803">
+                <div class="chatlog__content">
+                    <div class="markdown">sondern </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="764464381631004692" id="message-764464381631004692">
+                <div class="chatlog__content">
+                    <div class="markdown">fr&#246;hlich </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">10-Oct-20 02:56 PM</span>
+
+            <div class="chatlog__message " data-message-id="764471484193701948" id="message-764471484193701948">
+                <div class="chatlog__content">
+                    <div class="markdown">Wahrheit </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">10-Oct-20 07:33 PM</span>
+
+            <div class="chatlog__message " data-message-id="764541066409541642" id="message-764541066409541642">
+                <div class="chatlog__content">
+                    <div class="markdown">niemals </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">12-Oct-20 02:50 PM</span>
+
+            <div class="chatlog__message " data-message-id="765194606571683841" id="message-765194606571683841">
+                <div class="chatlog__content">
+                    <div class="markdown">Wasser </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">13-Oct-20 09:40 AM</span>
+
+            <div class="chatlog__message " data-message-id="765479058246336543" id="message-765479058246336543">
+                <div class="chatlog__content">
+                    <div class="markdown">Geduldig </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">13-Oct-20 05:40 PM</span>
+
+            <div class="chatlog__message " data-message-id="765599850137387098" id="message-765599850137387098">
+                <div class="chatlog__content">
+                    <div class="markdown">Einlegen </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">15-Oct-20 02:42 PM</span>
+
+            <div class="chatlog__message " data-message-id="766279856580984892" id="message-766279856580984892">
+                <div class="chatlog__content">
+                    <div class="markdown">weil - ponieważ </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">15-Oct-20 02:53 PM</span>
+
+            <div class="chatlog__message " data-message-id="766282588083978260" id="message-766282588083978260">
+                <div class="chatlog__content">
+                    <div class="markdown">so - tak bardzo </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">15-Oct-20 04:04 PM</span>
+
+            <div class="chatlog__message " data-message-id="766300436419575828" id="message-766300436419575828">
+                <div class="chatlog__content">
+                    <div class="markdown">Herz - serce (brzmi prawie jak hertz ... ) </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="766300855792042015" id="message-766300855792042015">
+                <div class="chatlog__content">
+                    <div class="markdown">mief </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">16-Oct-20 12:10 PM</span>
+
+            <div class="chatlog__message " data-message-id="766603903440912384" id="message-766603903440912384">
+                <div class="chatlog__content">
+                    <div class="markdown">leben </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="766603955580829696" id="message-766603955580829696">
+                <div class="chatlog__content">
+                    <div class="markdown">viel </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">16-Oct-20 01:32 PM</span>
+
+            <div class="chatlog__message " data-message-id="766624620807323669" id="message-766624620807323669">
+                <div class="chatlog__content">
+                    <div class="markdown">wichtig </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">17-Oct-20 09:55 PM</span>
+
+            <div class="chatlog__message " data-message-id="767113604398841867" id="message-767113604398841867">
+                <div class="chatlog__content">
+                    <div class="markdown">Neben </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">17-Oct-20 10:07 PM</span>
+
+            <div class="chatlog__message " data-message-id="767116575459246100" id="message-767116575459246100">
+                <div class="chatlog__content">
+                    <div class="markdown">Beitrag </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">18-Oct-20 12:46 AM</span>
+
+            <div class="chatlog__message " data-message-id="767156562736185355" id="message-767156562736185355">
+                <div class="chatlog__content">
+                    <div class="markdown">weinen = płakać wino wein </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">18-Oct-20 09:45 AM</span>
+
+            <div class="chatlog__message " data-message-id="767292172936151052" id="message-767292172936151052">
+                <div class="chatlog__content">
+                    <div class="markdown">weint </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">18-Oct-20 10:02 AM</span>
+
+            <div class="chatlog__message " data-message-id="767296496437297162" id="message-767296496437297162">
+                <div class="chatlog__content">
+                    <div class="markdown">klar </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="767296651617501195" id="message-767296651617501195">
+                <div class="chatlog__content">
+                    <div class="markdown">zuwenig </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">19-Oct-20 08:12 AM</span>
+
+            <div class="chatlog__message " data-message-id="767631161836306442" id="message-767631161836306442">
+                <div class="chatlog__content">
+                    <div class="markdown">denke </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="767631690184261662" id="message-767631690184261662">
+                <div class="chatlog__content">
+                    <div class="markdown">gemeinsam </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">20-Oct-20 10:38 AM</span>
+
+            <div class="chatlog__message " data-message-id="768030447531720744" id="message-768030447531720744">
+                <div class="chatlog__content">
+                    <div class="markdown">Wieder </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">20-Oct-20 05:47 PM</span>
+
+            <div class="chatlog__message " data-message-id="768138324216905728" id="message-768138324216905728">
+                <div class="chatlog__content">
+                    <div class="markdown">andere </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">21-Oct-20 06:27 AM</span>
+
+            <div class="chatlog__message " data-message-id="768329699738779658" id="message-768329699738779658">
+                <div class="chatlog__content">
+                    <div class="markdown">glaube <span class="chatlog__edited-timestamp" title="21-Oct-20 06:28 AM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">21-Oct-20 11:09 AM</span>
+
+            <div class="chatlog__message " data-message-id="768400659544277013" id="message-768400659544277013">
+                <div class="chatlog__content">
+                    <div class="markdown">beisetzung </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">27-Oct-20 11:27 AM</span>
+
+            <div class="chatlog__message " data-message-id="770594427822669844" id="message-770594427822669844">
+                <div class="chatlog__content">
+                    <div class="markdown">W&#252;nsche </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/593756194439692300/f946334a446f924351fbbf6f9f96b103.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matball#4081" data-user-id="593756194439692300" style="color: rgb(46,204,113)">Kucyk</span>
+
+
+        <span class="chatlog__timestamp">27-Oct-20 10:06 PM</span>
+
+            <div class="chatlog__message " data-message-id="770755408071098388" id="message-770755408071098388">
+                <div class="chatlog__content">
+                    <div class="markdown">Zwischen </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+</div>
+
+<div class="postamble">
+    <div class="postamble__entry">Exported 154 message(s)</div>
+</div>
+
+</body>
+</html>
